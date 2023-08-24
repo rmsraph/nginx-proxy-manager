@@ -26,6 +26,9 @@ services:
       timeout: 3s
     depends_on:
       - db
+    networks:
+      - npm-network
+      - default
 
   db:
     image: 'jc21/mariadb-aria:latest'
@@ -37,9 +40,11 @@ services:
       MYSQL_PASSWORD: "${MYSQL_PASSWORD:-npm}"
     volumes:
       - mysql:/var/lib/mysql
+    networks:
+      - default
       
 networks:
-  default:
+  npm-network:
     external: true
     name: npm-network
 
