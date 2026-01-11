@@ -8,8 +8,7 @@ services:
       - '80:80' # Public HTTP Port
       - '443:443' # Public HTTPS Port
       - '81:81' # Admin Web Port
-      - '2222:2222' # SSH stream
-      - '2222:2222/udp' # SSH stream
+      - '22:22' # SSH stream
     environment:
       # Mysql/Maria connection parameters:
       DB_MYSQL_HOST: "db"
@@ -29,8 +28,10 @@ services:
     depends_on:
       - db
     networks:
-      - npm-network
-      - default
+      default:
+      hosts-network:
+      docker-ipvlan:
+        ipv4_address: $NPM_IP
 
   db:
     image: 'jc21/mariadb-aria:latest'
@@ -46,9 +47,11 @@ services:
       - default
       
 networks:
-  npm-network:
+  default:
+  hosts-network:
     external: true
-    name: npm-network
+  docker-ipvlan:
+    external: true
 
 volumes:
   mysql:
