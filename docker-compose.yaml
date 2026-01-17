@@ -8,7 +8,7 @@ services:
       - '80:80' # Public HTTP Port
       - '443:443' # Public HTTPS Port
       - '81:81' # Admin Web Port
-      - '22:22' # SSH stream
+      #- '22:22' # SSH stream
     environment:
       # Mysql/Maria connection parameters:
       DB_MYSQL_HOST: "db"
