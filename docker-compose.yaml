@@ -29,7 +29,7 @@ services:
     depends_on:
       - db
     networks:
-      - npm-network
+      - hosts-network
       - default
 
   db:
@@ -46,9 +46,9 @@ services:
       - default
       
 networks:
-  npm-network:
+  hosts-network:
     external: true
-    name: npm-network
+    name: hosts-network
 
 volumes:
   mysql:
